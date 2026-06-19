@@ -1,11 +1,11 @@
-const API_URL =
-  "http://127.0.0.1:8000";
+const API =
+  process.env.NEXT_PUBLIC_API_URL;
 
-export async function getEventStats(
-  month: number
-) {
+export async function getEventStats(month?: number) {
   const res = await fetch(
-    `http://127.0.0.1:8000/event-stats?month=${month}`
+    `${API}/event-stats${
+      month ? `?month=${month}` : ""
+    }`
   );
 
   return res.json();
@@ -13,7 +13,7 @@ export async function getEventStats(
 
 export async function getHotspots() {
   const res = await fetch(
-    `${API_URL}/hotspots`
+    `${API}/hotspots`
   );
 
   return res.json();
@@ -24,7 +24,7 @@ export async function getEventCauses(
 ) {
 
   const res = await fetch(
-    `http://127.0.0.1:8000/event-causes${
+    `${API}/event-causes${
       month
       ? `?month=${month}`
       : ""
@@ -36,7 +36,7 @@ export async function getEventCauses(
 
 export async function getCalendarEvents() {
   const res = await fetch(
-    "http://127.0.0.1:8000/calendar"
+    `${API}/calendar`
   );
 
   return res.json();
@@ -44,7 +44,7 @@ export async function getCalendarEvents() {
 
 export async function getHeatmap() {
   const res = await fetch(
-    "http://127.0.0.1:8000/heatmap"
+    `${API}/heatmap`
   );
 
   return res.json();

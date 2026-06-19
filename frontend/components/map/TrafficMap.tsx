@@ -54,7 +54,7 @@ export default function TrafficMap({
       try {
         const hotspotResponse =
           await fetch(
-            "http://127.0.0.1:8000/hotspots"
+            `${process.env.NEXT_PUBLIC_API_URL}/hotspots`
           );
 
         const hotspotData =
@@ -64,7 +64,7 @@ export default function TrafficMap({
 
         const heatmapResponse =
           await fetch(
-            `http://127.0.0.1:8000/heatmap?month=${month}`
+            `${process.env.NEXT_PUBLIC_API_URL}/heatmap?month=${month}`
           );
 
         const heatmapData =

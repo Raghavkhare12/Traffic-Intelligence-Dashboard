@@ -34,7 +34,7 @@ export default function EventSimulator() {
     setLoading(true);
     try {
       const riskRes = await fetch(
-        "http://127.0.0.1:8000/predict-risk",
+        `${process.env.NEXT_PUBLIC_API_URL}/predict-risk`,
         {
           method: "POST",
           headers: {
@@ -52,7 +52,7 @@ export default function EventSimulator() {
         await riskRes.json();
 
       const resourceRes = await fetch(
-        `http://127.0.0.1:8000/resource-plan?event_cause=${form.event_cause}&risk_level=${riskData.risk_level}&crowd_size=${crowdSize}&hour=${form.hour}`
+        `${process.env.NEXT_PUBLIC_API_URL}/resource-plan?event_cause=${form.event_cause}&risk_level=${riskData.risk_level}&crowd_size=${crowdSize}&hour=${form.hour}`
       );
 
       const resourceData =
