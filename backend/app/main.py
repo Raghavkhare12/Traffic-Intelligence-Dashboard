@@ -46,6 +46,7 @@ def home():
 
 
 @app.get("/health")
+@app.head("/health")
 def health():
 
     return {
