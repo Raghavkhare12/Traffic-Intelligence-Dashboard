@@ -45,13 +45,14 @@ def home():
     }
 
 
-@app.get("/health")
-@app.head("/health")
-def health():
+from fastapi import APIRouter
 
-    return {
-        "status": "healthy"
-    }
+@app.api_route(
+    "/health",
+    methods=["GET", "HEAD"]
+)
+async def health():
+    return {"status": "healthy"}
 
 @app.get("/recommend-resources")
 def get_recommendation(
